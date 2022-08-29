@@ -1,0 +1,153 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- Country -->
+<div class="modal fade" id="Modal-Country" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CountryModalHeading"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="modal_item_title">Name</div>
+                        <div class="data_value" id="country_name_value"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="modal_item_title">Official Currencies</div>
+                        <div class="data_value" id="country_currencies_value"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="modal_item_title">Capital City</div>
+                        <div class="data_value" id="country_capital_value"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="modal_item_title">Official Languages</div>
+                        <div class="data_value" id="country_languages_value"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="modal_item_title">Population</div>
+                        <div class="data_value" id="country_population_value"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="modal_item_title">Borders</div>
+                        <div class="data_value" id="country_borders_value"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Region -->
+<div class="modal fade" id="Modal-Region" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="RegionModalHeading"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="modal_item_title">Name</div>
+                        <div class="data_value" id="region_name_value"></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="modal_item_title">Total Population</div>
+                        <div class="data_value" id="region_population_value"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="modal_item_title">Countries</div>
+                        <div class="data_value" id="region_countries_value"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="modal_item_title">Sub Regions</div>
+                        <div class="data_value" id="region_subregions_value"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subregion -->
+<div class="modal fade" id="Modal-Subregion" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="SubregionModalHeading"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="modal_item_title">Name</div>
+                        <div class="data_value" id="subregion_name_value"></div>
+                    </div>
+                    <div class="col-4">
+                        <div class="modal_item_title">Population</div>
+                        <div class="data_value" id="subregion_population_value"></div>
+                    </div>
+                    <div class="col-4">
+                        <div class="modal_item_title">Region</div>
+                        <div class="data_value" id="subregion_region_value"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="modal_item_title">Countries</div>
+                        <div class="data_value" id="subregion_countries_value"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        
+    </div>
+    <div class="col-12">
+        <input type="text" id="search" onkeyup="getCountries(1)" placeholder="Search for country..">
+        <table class="table" id="table_countries">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">Subregion</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row pager_container">
+    <div class="col-12">
+        <nav aria-label="Page navigation example">
+            <ul id="pager" class="pagination">
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="/lib/bootstrap4-paginator/bootstrap-paginator.min.js"></script>
+    <script src="/js/country.js"></script>
+}

@@ -1,5 +1,6 @@
 ﻿
-const uri = 'https://localhost:7106/';
+//const uri = 'https://localhost:7106/';
+const uri = 'https://thecountryapi.azurewebsites.net/';
 var activeModal;
 var currentPage = 1;
 
@@ -49,8 +50,8 @@ function buildTable(data) {
     let dataJSON = JSON.parse(data);
 
     var options = {
-        currentPage: dataJSON.pagenation.currentpage,
-        totalPages: dataJSON.pagenation.pagetotal,
+        currentPage: dataJSON.pagenation.currentPage,
+        totalPages: dataJSON.pagenation.pageTotal,
         onPageClicked: function (e, originalEvent, type, page) {
             getCountries(page);
         }
@@ -61,7 +62,7 @@ function buildTable(data) {
     var table = document.getElementById("table_countries");
     $('#table_countries tbody').empty();
 
-    for (var country of dataJSON.countrylist) {
+    for (var country of dataJSON.countryList) {
         var row = table.getElementsByTagName('tbody')[0].insertRow();
 
         var cell = row.insertCell();
@@ -106,7 +107,7 @@ function buildCountry(data) {
     heading.innerHTML = `${country.name}`;
 
     name.innerHTML = `${country.name}`;
-    capital.innerHTML = `${country.capital.toString()}`;
+    capital.innerHTML = `${country.capital}`;
     population.innerHTML = `${country.population}`;
     currencies.innerHTML = `${country.currencies.toString()}`;
     languages.innerHTML = `${country.languages.toString()}`;
@@ -137,18 +138,18 @@ function buildRegion(data) {
     population.innerHTML = `${region.population}`;
 
     var countriesLinks = [];
-    for (var country of region.countrylist) {
+    for (var country of region.countryList) {
         var a = `<a title="country" href="javascript:getSelectedCountry('${country}');">${country}</a>`;
         countriesLinks.push(a);
     }
     countries.innerHTML = countriesLinks.toString();
 
-    if (region.subregionlist.length > 0) {
+    if (region.subregionList.length > 0) {
         subregions.parentElement.style.display = "block";
-        if (region.subregionlist.toString() != "") {
+        if (region.subregionList.toString() != "") {
 
             var subregionLinks = [];
-            for (var subregion of region.subregionlist) {
+            for (var subregion of region.subregionList) {
                 var a = `<a title="subregion" href="javascript:getSelectedSubregion('${region.name}','${subregion}');">${subregion}</a>`;
                 subregionLinks.push(a);
             }
@@ -181,7 +182,7 @@ function buildSubregion(data) {
     region.innerHTML = `<a title="subregion" href="javascript:getSelectedRegion('${subregion.region}');">${subregion.region}</a>`;
 
     var countriesLinks = [];
-    for (var country of subregion.countrylist) {
+    for (var country of subregion.countryList) {
         var a = `<a title="country" href="javascript:getSelectedCountry('${country}');">${country}</a>`;
         countriesLinks.push(a);
     }
